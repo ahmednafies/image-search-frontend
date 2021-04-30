@@ -26,7 +26,7 @@ export const VideoPreview = ({ className, setImage }) => {
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(player.current, 0, 0, width, height);
         setImage(canvas.current.toDataURL());
-      }, 3000);
+      }, 10000);
     }
     return () => clearInterval(interval);
   }, [canvas, handleError, setImage]);
@@ -56,8 +56,9 @@ export const VideoPreview = ({ className, setImage }) => {
       ></canvas>
       <video
         muted
+        style={{ maxWidth: "auto", height: "200px" }}
         loop={!isMobile ? true : false}
-        className={cn(className, "w-full h-full max-w-2xl")}
+        className={cn(className)}
         src={!isMobile ? cat : undefined}
         ref={player}
         id="player"

@@ -1,21 +1,20 @@
 import { useQuery } from "react-query";
-// const API_URL = 'http://backend.backend'
+const API_URL = "https://2ee2e615cac1.ngrok.io/image-search/";
 
 async function getSuggestions(image) {
-  console.log("sending a request");
-  // try {
-  //   const response = await fetch(API_URL, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(image)
-  //   })
-  //   return response.json();
-
-  // } catch (error) {
-  //   console.log(error)
-  // }
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ image: image.split(",")[1] }),
+    });
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     products: [
