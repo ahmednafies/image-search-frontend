@@ -8,15 +8,13 @@ const constraints = {
   video: { facingMode: "environment" },
 };
 
-export const VideoPreview = ({ foo, className }) => {
+export const VideoPreview = ({ className, setImage }) => {
   const player = useRef(null);
   const canvas = useRef(null);
-  const [imageData /*setImageData*/] = useState("");
   const [canvasWidthHeight, setCanvasWidthHeight] = useState({});
   const handleError = useErrorHandler();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
-  console.log(player);
   useEffect(() => {
     let interval;
     if (canvas.current) {
@@ -27,10 +25,11 @@ export const VideoPreview = ({ foo, className }) => {
         setCanvasWidthHeight({ width, height });
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(player.current, 0, 0, width, height);
+        setImage(canvas.current.toDataURL());
       }, 3000);
     }
     return () => clearInterval(interval);
-  }, [canvas, handleError]);
+  }, [canvas, handleError, setImage]);
 
   useLayoutEffect(() => {
     async function getUserMedia() {
@@ -46,10 +45,6 @@ export const VideoPreview = ({ foo, className }) => {
       getUserMedia();
     }
   }, [player, handleError, isMobile]);
-
-  // const onClick = () => {
-  //   setImageData(canvas.current.toDataURL());
-  // };
 
   return (
     <>
@@ -68,7 +63,6 @@ export const VideoPreview = ({ foo, className }) => {
         id="player"
         autoPlay
       ></video>
-      <div>{imageData}</div>
     </>
   );
 };

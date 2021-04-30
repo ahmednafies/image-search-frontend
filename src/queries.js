@@ -1,6 +1,22 @@
 import { useQuery } from "react-query";
+// const API_URL = 'http://backend.backend'
 
-function getSuggestions() {
+async function getSuggestions(image) {
+  console.log("sending a request");
+  // try {
+  //   const response = await fetch(API_URL, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(image)
+  //   })
+  //   return response.json();
+
+  // } catch (error) {
+  //   console.log(error)
+  // }
+
   return {
     products: [
       {
@@ -27,7 +43,9 @@ function getSuggestions() {
   };
 }
 
-export const useSuggestions = () => {
-  const query = useQuery("suggestions", getSuggestions);
+export const useSuggestions = (image) => {
+  const query = useQuery(["suggestions", image], () => getSuggestions(image), {
+    enabled: Boolean(image),
+  });
   return query;
 };

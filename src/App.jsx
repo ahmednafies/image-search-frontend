@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import "./App.css";
 import { VideoPreview } from "./VideoPreview";
@@ -40,13 +40,17 @@ function App() {
 }
 
 const AppContent = () => {
-  const { data, isLoading } = useSuggestions();
+  const [imageData, setImageData] = useState(null);
+  const { data, isLoading } = useSuggestions(imageData);
   return (
     <div className="flex flex-col h-full">
       <h1 className="text-center text-3xl font-extrabold tracking-wider my-5">
         Fynd it
       </h1>
-      <VideoPreview className="self-center border-solid border-4" />
+      <VideoPreview
+        className="self-center border-solid border-4"
+        setImage={setImageData}
+      />
       {isLoading && <span>Loading...</span>}
       {data && <Products products={data.products} />}
     </div>
