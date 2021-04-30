@@ -1,6 +1,5 @@
 import { useQuery } from "react-query";
 import axios from "axios";
-import { data } from "autoprefixer";
 const API_URL = "https://315654057c3e.ngrok.io/image-search/";
 
 async function getSuggestions(image) {
@@ -15,30 +14,30 @@ async function getSuggestions(image) {
   });
   return response.data;
 
-  return {
-    products: [
-      {
-        imageUrl: "https://picsum.photos/200/300?1",
-        url: "https://google.com",
-        id: 1,
-      },
-      {
-        imageUrl: "https://picsum.photos/200/300?2",
-        url: "https://google.com",
-        id: 2,
-      },
-      {
-        imageUrl: "https://picsum.photos/200/300?3",
-        url: "https://google.com",
-        id: 3,
-      },
-      {
-        imageUrl: "https://picsum.photos/200/300?4",
-        url: "https://google.com",
-        id: 4,
-      },
-    ],
-  };
+  // return {
+  //   products: [
+  //     {
+  //       imageUrl: "https://picsum.photos/200/300?1",
+  //       url: "https://google.com",
+  //       id: 1,
+  //     },
+  //     {
+  //       imageUrl: "https://picsum.photos/200/300?2",
+  //       url: "https://google.com",
+  //       id: 2,
+  //     },
+  //     {
+  //       imageUrl: "https://picsum.photos/200/300?3",
+  //       url: "https://google.com",
+  //       id: 3,
+  //     },
+  //     {
+  //       imageUrl: "https://picsum.photos/200/300?4",
+  //       url: "https://google.com",
+  //       id: 4,
+  //     },
+  //   ],
+  // };
 }
 
 export const useSuggestions = (image) => {
