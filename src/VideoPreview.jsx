@@ -13,7 +13,8 @@ export const VideoPreview = ({ className, setImage, label }) => {
   const canvas = useRef(null);
   const [canvasWidthHeight, setCanvasWidthHeight] = useState({});
   const handleError = useErrorHandler();
-  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  // const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  const isMobile = true;
 
   useEffect(() => {
     let interval;
