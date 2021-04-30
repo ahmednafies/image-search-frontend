@@ -17,7 +17,7 @@ const Products = ({ products }) => {
           <a href={product.url}>
             <img
               className="object-cover h-32 w-32 max-w-none rounded-md"
-              src={product.imageUrl}
+              src={product.image_url}
               alt={product.id}
             />
           </a>

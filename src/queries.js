@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-const API_URL = "https://2ee2e615cac1.ngrok.io/image-search/";
+const API_URL = "https://509e19dfca59.ngrok.io/image-search/";
 
 async function getSuggestions(image) {
   try {
