@@ -1,5 +1,80 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import cn from "classnames";
+import { useErrorHandler } from "react-error-boundary";
+import { useMediaQuery } from "react-responsive";
+import cat from "./nyan.mp4";
+import Button from "./Button";
 
-export const VideoPreview = ({ foo }) => {
-  return <canvas id="canvas" width={320} height={240}></canvas>;
+const constraints = {
+  video: { facingMode: "environment" },
+};
+
+export const VideoPreview = ({ foo, className }) => {
+  const player = useRef(null);
+  const canvas = useRef(null);
+  const [imageData, setImageData] = useState("");
+  const handleError = useErrorHandler();
+  const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  // const player = document.getElementById('player');
+  // const canvas = document.getElementById('canvas');
+  // const context = canvas.getContext('2d');
+  // const captureButton = document.getElementById('capture');
+
+  useEffect(() => {
+    let interval;
+    if (canvas.current) {
+      const context = canvas.current.getContext("2d");
+      interval = setInterval(() => {
+        context.drawImage(
+          player.current,
+          0,
+          0,
+          canvas.current.width,
+          canvas.current.height
+        );
+      }, 3000);
+    }
+    return () => clearInterval(interval);
+  }, [canvas, handleError]);
+  // captureButton.addEventListener('click', () => {
+  //   // Draw the video frame to the canvas.
+  //   context.drawImage(player, 0, 0, canvas.width, canvas.height);
+  //   console.log('> ', canvas.toDataURL())
+  // });
+
+  useLayoutEffect(() => {
+    async function getUserMedia() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        player.current.srcObject = stream;
+      } catch (error) {
+        handleError(error);
+      }
+    }
+
+    if (player.current && isMobile) {
+      getUserMedia();
+    }
+  }, [player, handleError, isMobile]);
+
+  const onClick = () => {
+    setImageData(canvas.current.toDataURL().length);
+  };
+
+  return (
+    <>
+      <canvas ref={canvas}></canvas>
+      <Button onClick={onClick}>click</Button>
+      <div>{imageData}</div>
+      <video
+        muted
+        loop
+        className={cn(className, "w-full h-full max-w-2xl")}
+        src={cat}
+        ref={player}
+        id="player"
+        autoPlay
+      ></video>
+    </>
+  );
 };
