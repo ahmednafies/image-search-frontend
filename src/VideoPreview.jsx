@@ -2,7 +2,6 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import cn from "classnames";
 import { useErrorHandler } from "react-error-boundary";
 import { useMediaQuery } from "react-responsive";
-import Button from "./Button";
 import cat from "./nyan.mp4";
 
 const constraints = {
@@ -27,7 +26,7 @@ export const VideoPreview = ({ className, setImage }) => {
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(player.current, 0, 0, width, height);
         setImage(canvas.current.toDataURL());
-      }, 10000);
+      }, 3000);
     }
     return () => clearInterval(interval);
   }, [canvas, handleError, setImage]);
@@ -50,7 +49,7 @@ export const VideoPreview = ({ className, setImage }) => {
   return (
     <>
       <canvas
-        className="absolute opacity-25"
+        className="absolute opacity-0"
         ref={canvas}
         width={canvasWidthHeight?.width}
         height={canvasWidthHeight?.height}
