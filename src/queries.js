@@ -6,22 +6,22 @@ function getSuggestions() {
       {
         imageUrl: "https://picsum.photos/200/300",
         url: "https://google.com",
-        key: 1,
+        id: 1,
       },
       {
         imageUrl: "https://picsum.photos/200/300",
         url: "https://google.com",
-        key: 2,
+        id: 2,
       },
       {
         imageUrl: "https://picsum.photos/200/300",
         url: "https://google.com",
-        key: 3,
+        id: 3,
       },
       {
         imageUrl: "https://picsum.photos/200/300",
         url: "https://google.com",
-        key: 4,
+        id: 4,
       },
     ],
   };
