@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
-async function getSuggestions() {
-  return await {
+function getSuggestions() {
+  return {
     products: [
       {
         imageUrl: "https://picsum.photos/200/300",

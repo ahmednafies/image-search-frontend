@@ -40,16 +40,15 @@ function App() {
 }
 
 const AppContent = () => {
-  const { data } = useSuggestions();
-
-  console.log("Data:", data);
+  const { data, isLoading } = useSuggestions();
   return (
     <div className="flex flex-col h-full">
       <h1 className="text-center text-3xl font-extrabold tracking-wider my-5">
         Fynd it
       </h1>
       <VideoPreview className="self-center border-solid border-4" />
-      <Products products={[]} />
+      {isLoading && <span>Loading...</span>}
+      {data && <Products products={data.products} />}
     </div>
   );
 };
