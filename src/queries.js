@@ -44,5 +44,11 @@ export const useSuggestions = (image) => {
   const query = useQuery("suggestions", async () => getSuggestions(image), {
     enabled: Boolean(image),
   });
+  let products;
+  if (query.data?.products) {
+    console.log(query.data.products);
+    products = query.data.products.slice(0, 6);
+    return { ...query, data: { ...query.data, products } };
+  }
   return query;
 };

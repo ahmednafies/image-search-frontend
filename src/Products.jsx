@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import styled from "styled-components";
 
@@ -18,7 +19,6 @@ const Products = ({ products }) => {
             <img
               className="object-cover h-32 w-32 max-w-none rounded-md"
               src={product.image_url}
-              alt={product.id}
             />
           </a>
         </GridItem>
