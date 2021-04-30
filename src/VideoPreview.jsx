@@ -3,7 +3,6 @@ import cn from "classnames";
 import { useErrorHandler } from "react-error-boundary";
 import { useMediaQuery } from "react-responsive";
 import cat from "./nyan.mp4";
-import Button from "./Button";
 
 const constraints = {
   video: { facingMode: "environment" },
@@ -12,7 +11,7 @@ const constraints = {
 export const VideoPreview = ({ foo, className }) => {
   const player = useRef(null);
   const canvas = useRef(null);
-  const [imageData, setImageData] = useState("");
+  const [imageData /*setImageData*/] = useState("");
   const handleError = useErrorHandler();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
@@ -49,9 +48,9 @@ export const VideoPreview = ({ foo, className }) => {
     }
   }, [player, handleError, isMobile]);
 
-  const onClick = () => {
-    setImageData(canvas.current.toDataURL().length);
-  };
+  // const onClick = () => {
+  //   setImageData(canvas.current.toDataURL());
+  // };
 
   return (
     <>
@@ -65,7 +64,6 @@ export const VideoPreview = ({ foo, className }) => {
         id="player"
         autoPlay
       ></video>
-      <Button onClick={onClick}>click</Button>
       <div>{imageData}</div>
     </>
   );
