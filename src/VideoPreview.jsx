@@ -15,16 +15,13 @@ export const VideoPreview = ({ foo, className }) => {
   const [imageData, setImageData] = useState("");
   const handleError = useErrorHandler();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
-  // const player = document.getElementById('player');
-  // const canvas = document.getElementById('canvas');
-  // const context = canvas.getContext('2d');
-  // const captureButton = document.getElementById('capture');
 
   useEffect(() => {
     let interval;
     if (canvas.current) {
       const context = canvas.current.getContext("2d");
       interval = setInterval(() => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(
           player.current,
           0,
@@ -36,11 +33,6 @@ export const VideoPreview = ({ foo, className }) => {
     }
     return () => clearInterval(interval);
   }, [canvas, handleError]);
-  // captureButton.addEventListener('click', () => {
-  //   // Draw the video frame to the canvas.
-  //   context.drawImage(player, 0, 0, canvas.width, canvas.height);
-  //   console.log('> ', canvas.toDataURL())
-  // });
 
   useLayoutEffect(() => {
     async function getUserMedia() {
@@ -63,18 +55,18 @@ export const VideoPreview = ({ foo, className }) => {
 
   return (
     <>
-      <canvas ref={canvas}></canvas>
-      <Button onClick={onClick}>click</Button>
-      <div>{imageData}</div>
+      <canvas className="absolute opacity-25" ref={canvas}></canvas>
       <video
         muted
-        loop
+        loop={!isMobile ? true : false}
         className={cn(className, "w-full h-full max-w-2xl")}
-        src={cat}
+        src={!isMobile ? cat : undefined}
         ref={player}
         id="player"
-        autoPlay
+        autoPlay={!isMobile ? true : false}
       ></video>
+      <Button onClick={onClick}>click</Button>
+      <div>{imageData}</div>
     </>
   );
 };
