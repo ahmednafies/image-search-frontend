@@ -44,7 +44,9 @@ const AppContent = () => {
   const { data, refetch } = useSuggestions(imageData);
 
   useEffect(() => {
-    refetch();
+    if (imageData) {
+      refetch();
+    }
   }, [imageData, refetch]);
 
   return (

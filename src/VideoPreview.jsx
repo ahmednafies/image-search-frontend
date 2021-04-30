@@ -26,6 +26,7 @@ export const VideoPreview = ({ className, setImage }) => {
         setCanvasWidthHeight({ width, height });
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(player.current, 0, 0, width, height);
+        setImage(canvas.current.toDataURL());
       }, 10000);
     }
     return () => clearInterval(interval);
@@ -64,9 +65,6 @@ export const VideoPreview = ({ className, setImage }) => {
         id="player"
         autoPlay
       ></video>
-      <Button onClick={() => setImage(canvas.current.toDataURL())}>
-        Click
-      </Button>
     </>
   );
 };
