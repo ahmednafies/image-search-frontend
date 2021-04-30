@@ -56,7 +56,7 @@ export const VideoPreview = ({ className, setImage }) => {
       ></canvas>
       <video
         muted
-        style={{ maxWidth: "auto", height: "200px" }}
+        style={{ maxWidth: "auto", height: "400px" }}
         loop={!isMobile ? true : false}
         className={cn(className)}
         src={!isMobile ? cat : undefined}

@@ -1,20 +1,19 @@
 import { useQuery } from "react-query";
-const API_URL = "https://2ee2e615cac1.ngrok.io/image-search/";
+import axios from "axios";
+import { data } from "autoprefixer";
+const API_URL = "https://315654057c3e.ngrok.io/image-search/";
 
 async function getSuggestions(image) {
-  try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ image: image.split(",")[1] }),
-    });
-    return response.json();
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await axios({
+    url: API_URL,
+    method: "post",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({ image: image.split(",")[1] }),
+  });
+  return response.data;
 
   return {
     products: [
@@ -43,7 +42,7 @@ async function getSuggestions(image) {
 }
 
 export const useSuggestions = (image) => {
-  const query = useQuery(["suggestions", image], () => getSuggestions(image), {
+  const query = useQuery("suggestions", async () => getSuggestions(image), {
     enabled: Boolean(image),
   });
   return query;

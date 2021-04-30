@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 import "./App.css";
 import { VideoPreview } from "./VideoPreview";
@@ -41,7 +41,12 @@ function App() {
 
 const AppContent = () => {
   const [imageData, setImageData] = useState(null);
-  const { data, isLoading } = useSuggestions(imageData);
+  const { data, refetch } = useSuggestions(imageData);
+
+  useEffect(() => {
+    refetch();
+  }, [imageData, refetch]);
+
   return (
     <div className="flex flex-col h-full">
       <h1 className="text-center text-3xl font-extrabold tracking-wider my-5">
@@ -51,7 +56,6 @@ const AppContent = () => {
         className="self-center border-solid border-4"
         setImage={setImageData}
       />
-      {isLoading && <span>Loading...</span>}
       {data && <Products products={data.products} />}
     </div>
   );
