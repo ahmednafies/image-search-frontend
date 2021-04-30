@@ -65,7 +65,7 @@ export const VideoPreview = ({ foo, className }) => {
         src={!isMobile ? cat : undefined}
         ref={player}
         id="player"
-        autoPlay={!isMobile ? true : false}
+        autoPlay
       ></video>
       <Button onClick={onClick}>click</Button>
       <div>{imageData}</div>
