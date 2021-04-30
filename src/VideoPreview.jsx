@@ -4,6 +4,7 @@ import { useErrorHandler } from "react-error-boundary";
 import { useMediaQuery } from "react-responsive";
 import cat from "./nyan.mp4";
 import Button from "./Button";
+import Products from "./Products";
 
 const constraints = {
   video: { facingMode: "environment" },
@@ -15,6 +16,7 @@ export const VideoPreview = ({ foo, className }) => {
   const [imageData, setImageData] = useState("");
   const handleError = useErrorHandler();
   const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
+  const [products] = useState([]);
 
   useEffect(() => {
     let interval;
@@ -67,6 +69,7 @@ export const VideoPreview = ({ foo, className }) => {
       ></video>
       <Button onClick={onClick}>click</Button>
       <div>{imageData}</div>
+      <Products products={products.slice(0, 4)} />
     </>
   );
 };
