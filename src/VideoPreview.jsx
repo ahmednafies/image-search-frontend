@@ -49,7 +49,7 @@ export const VideoPreview = ({ className, setImage, label }) => {
   return (
     <>
       <canvas
-        className="absolute opacity-0"
+        className="absolute hidden"
         ref={canvas}
         width={canvasWidthHeight?.width}
         height={canvasWidthHeight?.height}
