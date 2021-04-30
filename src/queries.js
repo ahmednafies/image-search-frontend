@@ -1,32 +1,27 @@
 import { useQuery } from "react-query";
 
-async function getSuggestions() {
-  return await {
+function getSuggestions() {
+  return {
     products: [
       {
-        image_url: "https://picsum.photos/200/300",
-        product_link: "https://google.com",
-        key: 1,
+        imageUrl: "https://picsum.photos/200/300",
+        url: "https://google.com",
+        id: 1,
       },
       {
-        image_url: "https://picsum.photos/200/300",
-        product_link: "https://google.com",
-        key: 2,
+        imageUrl: "https://picsum.photos/200/300",
+        url: "https://google.com",
+        id: 2,
       },
       {
-        image_url: "https://picsum.photos/200/300",
-        product_link: "https://google.com",
-        key: 3,
+        imageUrl: "https://picsum.photos/200/300",
+        url: "https://google.com",
+        id: 3,
       },
       {
-        image_url: "https://picsum.photos/200/300",
-        product_link: "https://google.com",
-        key: 4,
-      },
-      {
-        image_url: "https://picsum.photos/200/300",
-        product_link: "https://google.com",
-        key: 5,
+        imageUrl: "https://picsum.photos/200/300",
+        url: "https://google.com",
+        id: 4,
       },
     ],
   };
@@ -34,6 +29,5 @@ async function getSuggestions() {
 
 export const useSuggestions = () => {
   const query = useQuery("suggestions", getSuggestions);
-
   return query;
 };

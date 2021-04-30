@@ -3,6 +3,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import "./App.css";
 import { VideoPreview } from "./VideoPreview";
 import Button from "./Button";
+import Products from "./Products";
 
 import { ErrorBoundary } from "react-error-boundary";
 import { useSuggestions } from "./queries";
@@ -39,15 +40,15 @@ function App() {
 }
 
 const AppContent = () => {
-  const { data } = useSuggestions();
-
-  console.log(data);
+  const { data, isLoading } = useSuggestions();
   return (
     <div className="flex flex-col h-full">
       <h1 className="text-center text-3xl font-extrabold tracking-wider my-5">
         Fynd it
       </h1>
       <VideoPreview className="self-center border-solid border-4" />
+      {isLoading && <span>Loading...</span>}
+      {data && <Products products={data.products} />}
     </div>
   );
 };
