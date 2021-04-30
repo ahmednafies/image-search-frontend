@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import axios from "axios";
-const API_URL = "https://578d75b68c5c.ngrok.io/image-search/";
+const API_URL = "https://b23b9a4668e5.ngrok.io/image-search/";
 
 async function getSuggestions(image) {
   const response = await axios({

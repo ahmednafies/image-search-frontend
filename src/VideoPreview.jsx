@@ -54,22 +54,24 @@ export const VideoPreview = ({ className, setImage, label }) => {
         width={canvasWidthHeight?.width}
         height={canvasWidthHeight?.height}
       ></canvas>
-      <div className="relative">
-        <video
-          muted
-          style={{ maxWidth: "auto", height: "400px" }}
-          loop={!isMobile ? true : false}
-          className={cn(className)}
-          src={!isMobile ? cat : undefined}
-          ref={player}
-          id="player"
-          autoPlay
-        ></video>
-        {label ? (
-          <p className="bg-white bottom-2 rounded-md left-2 py-1 px-2 absolute">
-            {label}
-          </p>
-        ) : null}
+      <div className="flex flex-col">
+        <div className="relative self-center">
+          <video
+            muted
+            style={{ maxWidth: "auto", height: "400px" }}
+            loop={!isMobile ? true : false}
+            className={cn(className)}
+            src={!isMobile ? cat : undefined}
+            ref={player}
+            id="player"
+            autoPlay
+          ></video>
+          {label ? (
+            <p className="bg-white bottom-2 rounded-md left-2 py-1 px-2 absolute">
+              {label}
+            </p>
+          ) : null}
+        </div>
       </div>
     </>
   );
