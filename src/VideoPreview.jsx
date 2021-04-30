@@ -8,7 +8,7 @@ const constraints = {
   video: { facingMode: "environment" },
 };
 
-export const VideoPreview = ({ className, setImage }) => {
+export const VideoPreview = ({ className, setImage, label }) => {
   const player = useRef(null);
   const canvas = useRef(null);
   const [canvasWidthHeight, setCanvasWidthHeight] = useState({});
@@ -54,16 +54,23 @@ export const VideoPreview = ({ className, setImage }) => {
         width={canvasWidthHeight?.width}
         height={canvasWidthHeight?.height}
       ></canvas>
-      <video
-        muted
-        style={{ maxWidth: "auto", height: "400px" }}
-        loop={!isMobile ? true : false}
-        className={cn(className)}
-        src={!isMobile ? cat : undefined}
-        ref={player}
-        id="player"
-        autoPlay
-      ></video>
+      <div className="relative">
+        <video
+          muted
+          style={{ maxWidth: "auto", height: "400px" }}
+          loop={!isMobile ? true : false}
+          className={cn(className)}
+          src={!isMobile ? cat : undefined}
+          ref={player}
+          id="player"
+          autoPlay
+        ></video>
+        {label ? (
+          <p className="bg-white bottom-2 rounded-md left-2 py-1 px-2 absolute">
+            {label}
+          </p>
+        ) : null}
+      </div>
     </>
   );
 };

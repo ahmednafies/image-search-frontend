@@ -57,6 +57,7 @@ const AppContent = () => {
       <VideoPreview
         className="self-center border-solid border-4"
         setImage={setImageData}
+        label={data && data.label}
       />
       {data && <Products products={data.products} />}
     </div>
